@@ -1,4 +1,4 @@
-项目目录结构
+项目目录结构解释
 classroom-interaction-system/
 ├── frontend/                    # 前端项目
 │   ├── student-app/            # 学生端
