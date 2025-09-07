@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta name="description" content="课堂互动系统教师端 - 问题管理，AI智能分类，数据统计分析">
+    <meta name="keywords" content="课堂管理,问题分类,AI智能,数据统计,在线教育">
+    <meta name="author" content="课堂互动系统">
+    
+    <!-- favicon -->
+    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+    
+    <!-- 预连接到API服务器 -->
+    <link rel="preconnect" href="http://localhost:3000">
+    
+    <!-- SEO优化 -->
+    <meta property="og:title" content="课堂互动系统 - 教师管理端">
+    <meta property="og:description" content="智能管理学生问题，AI自动分类，数据统计分析">
+    <meta property="og:type" content="website">
+    
+    <title>课堂互动系统 - 教师端</title>
+    
+    <!-- 加载优化 -->
+    <style>
+      /* 页面加载时的样式 */
+      #app {
+        position: relative;
+      }
+      
+      /* 加载动画 */
+      .initial-loading {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+        color: white;
+        font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      }
+      
+      .loading-logo {
+        width: 100px;
+        height: 100px;
+        border: 5px solid rgba(255, 255, 255, 0.3);
+        border-top: 5px solid white;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+        margin-bottom: 30px;
+        position: relative;
+      }
+      
+      .loading-logo::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 40px;
+        height: 40px;
+        background: white;
+        border-radius: 50%;
+        opacity: 0.8;
+      }
+      
+      .loading-logo::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 20px;
+        height: 20px;
+        background: #667eea;
+        border-radius: 50%;
+      }
+      
+      .loading-text {
+        font-size: 24px;
+        font-weight: 600;
+        margin-bottom: 15px;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+      }
+      
+      .loading-subtitle {
+        font-size: 16px;
+        opacity: 0.9;
+        margin-bottom: 30px;
+      }
+      
+      .loading-features {
+        display: flex;
+        gap: 30px;
+        margin-top: 20px;
+      }
+      
+      .feature-item {
+        text-align: center;
+        opacity: 0.8;
+      }
+      
+      .feature-icon {
+        width: 40px;
+        height: 40px;
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 10px;
+        font-size: 18px;
+        animation: pulse 2s ease-in-out infinite;
+      }
+      
+      .feature-text {
+        font-size: 12px;
+        white-space: nowrap;
+      }
+      
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+      
+      @keyframes pulse {
+        0%, 100% { 
+          transform: scale(1);
+          opacity: 0.8;
+        }
+        50% { 
+          transform: scale(1.1);
+          opacity: 1;
+        }
+      }
+      
+      /* 隐藏加载动画 */
+      .fade-out {
+        opacity: 0;
+        transition: opacity 0.8s ease;
+      }
+      
+      /* 响应式设计 */
+      @media (max-width: 768px) {
+        .loading-text {
+          font-size: 20px;
+        }
+        
+        .loading-subtitle {
+          font-size: 14px;
+        }
+        
+        .loading-features {
+          gap: 20px;
+        }
+        
+        .feature-icon {
+          width: 35px;
+          height: 35px;
+          font-size: 16px;
+        }
+        
+        .feature-text {
+          font-size: 11px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <noscript>
+      <div style="text-align: center; padding: 50px; font-family: Arial, sans-serif; max-width: 600px; margin: 50px auto; background: white; border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.1);">
+        <h2 style="color: #667eea; margin-bottom: 20px;">⚠️ JavaScript 未启用</h2>
+        <p style="margin-bottom: 15px; line-height: 1.6;">课堂互动系统教师端需要JavaScript支持才能正常运行。</p>
+        <p style="margin-bottom: 20px; line-height: 1.6;">请在浏览器设置中启用JavaScript后重新访问本页面。</p>
+        <div style="background: #f8f9ff; padding: 15px; border-radius: 6px; margin: 20px 0;">
+          <strong>功能特性：</strong>
+          <ul style="margin: 10px 0; text-align: left; display: inline-block;">
+            <li>智能问题管理</li>
+            <li>AI自动分类</li>
+            <li>数据统计分析</li>
+            <li>批量操作处理</li>
+          </ul>
+        </div>
+        <p style="color: #666; font-size: 14px;">如需技术支持，请联系系统管理员。</p>
+      </div>
+    </noscript>
+    
+    <!-- Vue应用挂载点 -->
+    <div id="app">
+      <!-- 初始加载动画 -->
+      <div id="initial-loading" class="initial-loading">
+        <div class="loading-logo"></div>
+        <div class="loading-text">课堂互动系统</div>
+        <div class="loading-subtitle">教师管理端 · 智能化问题管理平台</div>
+        
+        <div class="loading-features">
+          <div class="feature-item">
+            <div class="feature-icon">📋</div>
+            <div class="feature-text">问题管理</div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon">🤖</div>
+            <div class="feature-text">AI分类</div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon">📊</div>
+            <div class="feature-text">数据统计</div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon">⚡</div>
+            <div class="feature-text">高效处理</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- 页面加载完成后隐藏加载动画 -->
+    <script>
+      // 页面加载完成后隐藏加载动画
+      window.addEventListener('load', function() {
+        setTimeout(function() {
+          const loading = document.getElementById('initial-loading');
+          if (loading) {
+            loading.classList.add('fade-out');
+            setTimeout(function() {
+              loading.style.display = 'none';
+            }, 800);
+          }
+        }, 1500); // 延迟1.5秒后开始隐藏动画，让用户看到完整的加载效果
+      });
+      
+      // Vue应用挂载后也隐藏加载动画
+      window.hideInitialLoading = function() {
+        const loading = document.getElementById('initial-loading');
+        if (loading) {
+          loading.classList.add('fade-out');
+          setTimeout(function() {
+            loading.style.display = 'none';
+          }, 800);
+        }
+      };
+      
+      // 错误处理
+      window.addEventListener('error', function(e) {
+        console.error('页面加载错误:', e.error);
+        const loading = document.getElementById('initial-loading');
+        if (loading) {
+          loading.innerHTML = `
+            <div style="text-align: center; color: white;">
+              <h2>⚠️ 加载失败</h2>
+              <p>页面加载遇到问题，请刷新页面重试。</p>
+              <button onclick="window.location.reload()" style="background: white; color: #667eea; border: none; padding: 10px 20px; border-radius: 5px; margin-top: 15px; cursor: pointer;">
+                刷新页面
+              </button>
+            </div>
+          `;
+        }
+      });
+    </script>
+    
+    <!-- built files will be auto injected -->
+  </body>
+</html>

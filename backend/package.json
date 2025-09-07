@@ -1,0 +1,52 @@
+{
+  "name": "classroom-interaction-backend",
+  "version": "1.0.0",
+  "description": "課堂互动系统后端API服务",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "setup": "npm run db:init",
+    "setup:clean": "npm run db:reset && npm run db:init",
+    "db:init": "node ../database/db-tool.js init",
+    "db:reset": "node ../database/db-tool.js reset",
+    "db:status": "node ../database/db-tool.js status",
+    "db:test": "node ../database/db-tool.js test",
+    "db:seed": "node ../database/db-tool.js seed",
+    "db:clear": "node ../database/db-tool.js clear",
+    "db:migrate": "node ../database/migrate.js up",
+    "db:migrate:down": "node ../database/migrate.js down",
+    "db:migrate:status": "node ../database/migrate.js status",
+    "db:migrate:reset": "node ../database/migrate.js reset",
+    "db:fix-passwords": "node ../database/db-tool.js fix-passwords"
+  },
+  "keywords": [
+    "education",
+    "classroom",
+    "interaction",
+    "vue",
+    "express",
+    "mysql"
+  ],
+  "author": "Developer",
+  "license": "MIT",
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "bcryptjs": "^2.4.3",
+    "compression": "^1.7.4",
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "express-rate-limit": "^7.1.5",
+    "helmet": "^7.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "morgan": "^1.10.0",
+    "mysql2": "^3.6.5"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.2"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}

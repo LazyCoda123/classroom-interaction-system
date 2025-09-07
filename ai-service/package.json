@@ -1,0 +1,38 @@
+{
+    "name": "classroom-ai-service",
+    "version": "1.0.0",
+    "description": "课堂互动系统智能分类服务",
+    "main": "classifier.js",
+    "scripts": {
+      "start": "node classifier.js",
+      "test": "node -e \"require('./classifier').test()\"",
+      "dev": "nodemon classifier.js",
+      "validate": "node -e \"console.log(require('./models/keywordRules').validateRules())\""
+    },
+    "keywords": [
+      "ai",
+      "classification", 
+      "nlp",
+      "education",
+      "question-classification"
+    ],
+    "author": "Classroom Interaction System",
+    "license": "MIT",
+    "dependencies": {
+      "lodash": "^4.17.21"
+    },
+    "devDependencies": {
+      "nodemon": "^3.0.1"
+    },
+    "engines": {
+      "node": ">=14.0.0"
+    },
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/classroom-interaction/ai-service.git"
+    },
+    "bugs": {
+      "url": "https://github.com/classroom-interaction/ai-service/issues"
+    },
+    "homepage": "https://github.com/classroom-interaction/ai-service#readme"
+  }
